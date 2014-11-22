@@ -2,8 +2,11 @@
 
 #include "Recipient.h"
 
+#include <vector>
+
 class User : public Recipient {
-//TODO: Add addition fields like profile image, username? password?
+private:
+    std::vector<User> friends;
 
 public:
 

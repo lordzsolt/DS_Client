@@ -2,6 +2,7 @@
 
 extern std::string presharedKey;
 
+
 enum class MessageTag : int {
     New,
     Acknowledge,

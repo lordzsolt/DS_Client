@@ -8,9 +8,9 @@ set(SOURCE_FILES main.cpp
     Constants/ProtocolConstants.h
     Constants/ProtocolConstants.cpp
 
-    Models/Recipient.h
-    Models/User.h
-    Models/User.cpp
-    Models/Group.h
-    Models/Group.cpp)
+    Models/RecipientModels/Recipient.h
+    Models/RecipientModels/User.h
+    Models/RecipientModels/User.cpp
+    Models/RecipientModels/Group.h
+    Models/RecipientModels/Group.cpp)
 add_executable(Networks_Client ${SOURCE_FILES})
