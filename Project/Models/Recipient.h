@@ -4,7 +4,7 @@
 
 class Recipient {
 public:
-    Recipient(int id, std::string &name) : id(id), name(name) {
+    Recipient(int id, const std::string& name) : id(id), name(name) {
     }
 
     int getId() const {
@@ -15,12 +15,11 @@ public:
         this->id = id;
     }
 
-
-    std::string &getName() const {
-        return (std::string&)name;
+    const std::string& getName() const {
+        return name;
     }
 
-    void setName(std::string &name) {
+    void setName(const std::string& name) {
         this->name = name;
     }
 

@@ -7,7 +7,7 @@ class User : public Recipient {
 
 public:
 
-    User(int id, std::string &name) : Recipient(id, name) {
+    User(int id, const std::string& name) : Recipient(id, name) {
     }
 
     virtual void sendMessage(std::string message) override;
