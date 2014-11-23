@@ -7,5 +7,7 @@ private:
     Session();
 
 public:
-    const Session& activeSession();
+    static const Session& activeSession();
+
+    bool login(std::string username, std::string password);
 };
