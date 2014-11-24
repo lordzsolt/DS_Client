@@ -12,5 +12,11 @@ set(SOURCE_FILES main.cpp
     Models/RecipientModels/User.h
     Models/RecipientModels/User.cpp
     Models/RecipientModels/Group.h
-    Models/RecipientModels/Group.cpp)
+    Models/RecipientModels/Group.cpp
+
+    Models/ErrorMessage.h
+    Models/ErrorMessage.cpp
+    Models/Session.h
+    Models/Session.cpp
+    )
 add_executable(Networks_Client ${SOURCE_FILES})

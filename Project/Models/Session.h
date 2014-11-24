@@ -1,13 +1,17 @@
-#include "User.h"
+#pragma once
+
+#include "ErrorMessage.h"
+#include "RecipientModels/User.h"
+
+#include <string>
 
 class Session {
 private:
-    std::shared_ptr <Session> activeSession;
-    User currentUser;
-    Session();
+    User _currentUser;
 
 public:
-    static const Session& activeSession();
+    Session();
 
-    bool login(std::string username, std::string password);
+    bool login(std::string username, std::string password, ErrorMessage& error);
+    bool register(std::string username, std::string password, std::string rePassword, ErrorMessage& error);
 };

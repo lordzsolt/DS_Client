@@ -1,8 +1,9 @@
 #include "Session.h"
 
-const Session& Session::activeSession() {
-    if (!this->activeSession) {
-        this->activeSession = Session();
-    }
-    return this->activeSession;
+using namespace std;
+
+Session::Session() {};
+
+bool Session::login(std::string username, std::string password, ErrorMessage &error) {
+
 }
