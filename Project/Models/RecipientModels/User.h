@@ -9,7 +9,6 @@ private:
     std::vector<User> friends;
 
 public:
-
     User(int id, const std::string& name) : Recipient(id, name) {
     }
 

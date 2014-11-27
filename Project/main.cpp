@@ -1,10 +1,11 @@
-#include "Models/RecipientModels/User.h"
+#include "Controllers/Session.h"
 
 using namespace std;
 
 int main() {
-    string alma("Alma");
-    User currentUser(1, alma);
-    currentUser.sendMessage("alma");
+    Session activeSession();
+//    if (!activeSession.login()) {
+//
+//    }
     return 0;
 }
