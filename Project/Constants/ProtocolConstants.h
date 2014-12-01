@@ -11,7 +11,7 @@ enum class MessageType : int {
     Send_File
 };
 
-int getType(MessageType type);
+int getMessageType(MessageType type);
 
 
 enum class MessageTag : int {
@@ -21,4 +21,4 @@ enum class MessageTag : int {
     Missing
 };
 
-int getTag(MessageTag tag);
+int getMessageTag(MessageTag tag);

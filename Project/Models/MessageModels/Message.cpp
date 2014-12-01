@@ -5,8 +5,9 @@ Message::Message(MessageType const &type, int index, MessageTag const &tag): typ
 
 virtual std::string Message::serialize(int length) = 0 {
     std::ostringstream stream;
-    stream << length << "|";
+    stream << index << "|";
     stream << type << "|";
     stream << tag << "|";
+    stream << length << "|";
     return stream.str();
 }
