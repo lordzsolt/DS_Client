@@ -23,7 +23,7 @@ public:
         this->name = name;
     }
 
-    virtual void sendMessage(std::string message) = 0;
+    virtual ~Recipient() {}
 
 protected:
     int id;

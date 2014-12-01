@@ -3,16 +3,6 @@
 extern std::string presharedKey;
 
 
-enum class MessageTag : int {
-    New,
-    Acknowledge,
-    Corrupt,
-    Missing
-};
-
-int getTag(MessageTag tag);
-
-
 enum class MessageType : int {
     Register,
     Log_In,
@@ -22,3 +12,13 @@ enum class MessageType : int {
 };
 
 int getType(MessageType type);
+
+
+enum class MessageTag : int {
+    New,
+    Acknowledge,
+    Corrupt,
+    Missing
+};
+
+int getTag(MessageTag tag);
