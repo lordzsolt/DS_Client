@@ -13,7 +13,7 @@ int getMessageType(MessageType type) {
     return types[static_cast<int>(type)];
 }
 
-int getmessageTag(MessageTag tag) {
+int getMessageTag(MessageTag tag) {
     static int tags[] = {
             1 << 0,
             1 << 1,
@@ -22,3 +22,6 @@ int getmessageTag(MessageTag tag) {
     };
     return tags[static_cast<int>(tag)];
 }
+
+std::string kMessageKeyUsername = "username";
+std::string kMessageKeyPassword = "password";

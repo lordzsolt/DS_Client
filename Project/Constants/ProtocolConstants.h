@@ -1,3 +1,5 @@
+#pragma once
+
 #include <string>
 
 extern std::string presharedKey;
@@ -22,3 +24,7 @@ enum class MessageTag : int {
 };
 
 int getMessageTag(MessageTag tag);
+
+
+extern std::string kMessageKeyUsername;
+extern std::string kMessageKeyPassword;

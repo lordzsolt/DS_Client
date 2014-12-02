@@ -2,14 +2,17 @@
 
 #include <string>
 
-class MessageTag;
+enum class MessageTag : int;
 
-class LoginMessage :public Message {
+class LoginMessage : public Message {
 public:
 
-    LoginMessage(int index, MessageTag tag, std::string &username, std::string &password);
+    LoginMessage(int index, MessageTag const &tag, std::string &username, std::string &password);
+
+    std::string serialize();
 
 protected:
     std::string username;
     std::string password;
 };
+

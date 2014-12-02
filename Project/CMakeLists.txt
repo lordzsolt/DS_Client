@@ -5,17 +5,22 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 set(SOURCE_FILES main.cpp
 
-    Constants/ProtocolConstants.h
     Constants/ProtocolConstants.cpp
+    Constants/ProtocolConstants.h
 
-    Controllers/Session.h
     Controllers/Session.cpp
+    Controllers/Session.h
 
     Models/RecipientModels/Recipient.h
-    Models/RecipientModels/User.h
     Models/RecipientModels/User.cpp
-    Models/RecipientModels/Group.h
+    Models/RecipientModels/User.h
     Models/RecipientModels/Group.cpp
+    Models/RecipientModels/Group.h
+
+    Models/MessageModels/Message.cpp
+    Models/MessageModels/Message.h
+    Models/MessageModels/Messages/LoginMessage.cpp
+    Models/MessageModels/Messages/LoginMessage.h
 
     Models/ErrorMessage.h
     Models/ErrorMessage.cpp

@@ -1,13 +1,16 @@
 #include "Message.h"
+#include "../../Constants/ProtocolConstants.h"
+
+#include <sstream>
 
 Message::Message(MessageType const &type, int index, MessageTag const &tag): type(type), index(index), tag(tag) {
 }
 
-virtual std::string Message::serialize(int length) = 0 {
+std::string Message::serialize(int length) {
     std::ostringstream stream;
     stream << index << "|";
-    stream << type << "|";
-    stream << tag << "|";
-    stream << length << "|";
+    stream << getMessageType(type) << "|";
+    stream << getMessageTag(tag) << "|";
+    stream << length;
     return stream.str();
 }
