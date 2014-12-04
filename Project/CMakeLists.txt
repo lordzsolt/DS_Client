@@ -19,6 +19,8 @@ set(SOURCE_FILES main.cpp
 
     Models/MessageModels/Message.cpp
     Models/MessageModels/Message.h
+    Models/MessageModels/Messages/GroupMessage.cpp
+    Models/MessageModels/Messages/GroupMessage.h
     Models/MessageModels/Messages/LoginMessage.cpp
     Models/MessageModels/Messages/LoginMessage.h
     Models/MessageModels/Messages/PrivateMessage.cpp
