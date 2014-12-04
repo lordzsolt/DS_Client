@@ -25,3 +25,5 @@ int getMessageTag(MessageTag tag) {
 
 std::string kMessageKeyUsername = "username";
 std::string kMessageKeyPassword = "password";
+std::string kMessageKeyRecipientId = "recipientId";
+std::string kMessageKeyMessage = "message";

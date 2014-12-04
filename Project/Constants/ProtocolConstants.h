@@ -9,7 +9,8 @@ enum class MessageType : int {
     Register,
     Log_In,
     Log_Out,
-    Send_Message,
+    Private_Message,
+    Group_Message,
     Send_File
 };
 
@@ -28,3 +29,5 @@ int getMessageTag(MessageTag tag);
 
 extern std::string kMessageKeyUsername;
 extern std::string kMessageKeyPassword;
+extern std::string kMessageKeyRecipientId;
+extern std::string kMessageKeyMessage;

@@ -1,3 +1,5 @@
+#pragma once
+
 #include "../Message.h"
 
 #include <string>
