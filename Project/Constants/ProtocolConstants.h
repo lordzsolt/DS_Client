@@ -9,6 +9,7 @@ enum class MessageType : int {
     Register,
     Log_In,
     Log_Out,
+    Status_Update,
     Private_Message,
     Group_Message,
     Send_File
