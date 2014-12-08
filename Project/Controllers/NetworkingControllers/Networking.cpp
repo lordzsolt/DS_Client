@@ -10,6 +10,10 @@ void Networking::signup(std::string username, std::string password, NetworkCallb
 }
 
 
-void Networking::sendMessage(std::string message, std::unordered_set<int> recipientIds, NetworkCallback callback) const {
+void Networking::sendPrivateMessage(std::string message, std::unordered_set<int> recipientIds, NetworkCallback callback) const {
+
+}
+
+void Networking::sendGroupMessage(std::string message, std::unordered_set<int> recipientIds, NetworkCallback callback) const {
 
 }
