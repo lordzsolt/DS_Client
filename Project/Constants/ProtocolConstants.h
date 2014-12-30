@@ -2,6 +2,9 @@
 
 #include <string>
 
+extern std::string kServerAddress;
+extern unsigned short kServerPort;
+
 extern std::string presharedKey;
 
 
@@ -32,3 +35,6 @@ extern std::string kMessageKeyUsername;
 extern std::string kMessageKeyPassword;
 extern std::string kMessageKeyRecipientId;
 extern std::string kMessageKeyMessage;
+
+
+extern unsigned int kMaximumMessageLength;
