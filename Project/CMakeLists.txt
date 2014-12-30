@@ -38,3 +38,7 @@ set(SOURCE_FILES main.cpp
     Models/ErrorMessage.cpp
     )
 add_executable(Networks_Client ${SOURCE_FILES})
+
+if(WIN32)
+  target_link_libraries(Networks_Client wsock32 ws2_32)
+endif()
