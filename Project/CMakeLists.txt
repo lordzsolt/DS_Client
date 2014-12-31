@@ -12,10 +12,13 @@ set(SOURCE_FILES main.cpp
     Controllers/Session.h
     Controllers/NetworkingControllers/Networking.h
     Controllers/NetworkingControllers/Networking.cpp
-    Controllers/NetworkingControllers/MessageSender.h
-    Controllers/NetworkingControllers/MessageSender.cpp
-    Controllers/NetworkingControllers/SocketListener.h
-    Controllers/NetworkingControllers/SocketListener.cpp
+    Controllers/NetworkingControllers/Output/MessageSender.h
+    Controllers/NetworkingControllers/Output/MessageSender.cpp
+    Controllers/NetworkingControllers/Messenger.h
+    Controllers/NetworkingControllers/Messenger.cpp
+
+    Controllers/NetworkingControllers/Input/SocketListener.h
+    Controllers/NetworkingControllers/Input/SocketListener.cpp
 
     Models/RecipientModels/Recipient.h
     Models/RecipientModels/User.h

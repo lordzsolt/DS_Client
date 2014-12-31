@@ -6,7 +6,6 @@
 
 class SocketListener {
 
-
 public:
     SocketListener() {
     }

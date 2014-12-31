@@ -13,13 +13,15 @@ Networking::Networking() {
         return;
     }
 
-    _sender = MessageSender(kServerAddress, kServerPort);
-    _listener = SocketListener(kServerAddress, kServerPort);
+    _messenger = Messenger(kServerAddress, kServerPort);
 }
 
 
 void Networking::login(std::string username, std::string password, NetworkCallback callback) const {
-
+    MessengerCallback lamdaCallback = [] (bool success) {
+        callback(success);
+    };
+    _messenger.sendLogin(username, password, lamdaCallback);
 }
 
 
@@ -28,11 +30,11 @@ void Networking::signup(std::string username, std::string password, NetworkCallb
 }
 
 
-void Networking::sendPrivateMessage(std::string message, std::unordered_set<int> recipientIds, NetworkCallback callback) const {
+void Networking::privateMessage(std::string message, std::unordered_set<int> recipientIds, NetworkCallback callback) const {
 
 }
 
 
-void Networking::sendGroupMessage(std::string message, std::unordered_set<int> recipientIds, NetworkCallback callback) const {
+void Networking::groupMessage(std::string message, std::unordered_set<int> recipientIds, NetworkCallback callback) const {
 
 }
