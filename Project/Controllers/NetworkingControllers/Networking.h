@@ -4,8 +4,9 @@
 
 #include <string>
 #include <unordered_set>
+#include <functional>
 
-typedef void (*NetworkCallback)(bool success);
+using NetworkCallback = std::function<void(bool success)>;
 
 class Networking {
 public:

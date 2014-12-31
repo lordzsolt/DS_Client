@@ -1,5 +1,5 @@
 #include "MessageSender.h"
-#include "../../Constants/ProtocolConstants.h"
+#include "../../../Constants/ProtocolConstants.h"
 
 MessageSender::MessageSender(std::string serverAddress, unsigned short port) {
     _socket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);

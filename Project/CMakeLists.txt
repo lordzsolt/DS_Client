@@ -16,7 +16,8 @@ set(SOURCE_FILES main.cpp
     Controllers/NetworkingControllers/Output/MessageSender.cpp
     Controllers/NetworkingControllers/Messenger.h
     Controllers/NetworkingControllers/Messenger.cpp
-
+    Controllers/NetworkingControllers/Input/MessageReceiver.h
+    Controllers/NetworkingControllers/Input/MessageReceiver.cpp
     Controllers/NetworkingControllers/Input/SocketListener.h
     Controllers/NetworkingControllers/Input/SocketListener.cpp
 

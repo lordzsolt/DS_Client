@@ -38,3 +38,5 @@ extern std::string kMessageKeyMessage;
 
 
 extern unsigned int kMaximumMessageLength;
+
+extern unsigned int kMaximumMessageIndex;

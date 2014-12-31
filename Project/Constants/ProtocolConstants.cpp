@@ -34,3 +34,5 @@ std::string kMessageKeyMessage = "message";
 
 
 unsigned int kMaximumMessageLength = 4096;
+
+unsigned int kMaximumMessageIndex = 4096;

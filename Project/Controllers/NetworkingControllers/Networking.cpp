@@ -1,5 +1,7 @@
-#include <winsock.h>
 #include "Networking.h"
+
+#include <winsock.h>
+#include <functional>
 
 #include "../../Constants/ProtocolConstants.h"
 
@@ -18,7 +20,7 @@ Networking::Networking() {
 
 
 void Networking::login(std::string username, std::string password, NetworkCallback callback) const {
-    MessengerCallback lamdaCallback = [] (bool success) {
+    MessengerCallback lamdaCallback = [&callback] (bool success) {
         callback(success);
     };
     _messenger.sendLogin(username, password, lamdaCallback);
