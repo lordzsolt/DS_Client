@@ -20,6 +20,8 @@ set(SOURCE_FILES main.cpp
     Controllers/NetworkingControllers/Input/MessageReceiver.cpp
     Controllers/NetworkingControllers/Input/SocketListener.h
     Controllers/NetworkingControllers/Input/SocketListener.cpp
+    Controllers/ThreadControllers/SynchronizedQueue.h
+    Controllers/ThreadControllers/SynchronizedQueue.cpp
 
     Models/RecipientModels/Recipient.h
     Models/RecipientModels/User.h
