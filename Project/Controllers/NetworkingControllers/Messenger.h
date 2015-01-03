@@ -13,7 +13,6 @@ using MessengerCallback = std::function<void(bool success)>;
 
 class Messenger {
 public:
-    Messenger() {}
     Messenger(std::string serverAddress, unsigned short port);
 
     void sendLogin(std::string username, std::string password, MessengerCallback callback);
@@ -27,5 +26,6 @@ private:
     unsigned int _messageIndex = 0;
     std::unordered_map<unsigned int, MessengerCallback> _callbacks;
 
-    void sendMessage(Message message, MessengerCallback callback);
+    void sendMessage(Message* message, MessengerCallback callback);
+    void messageReceived(MessageReceiver receiver, Message& message);
 };

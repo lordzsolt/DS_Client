@@ -11,7 +11,7 @@ private:
     Networking _networking;
 
 public:
-    Session();
+    Session() = default;
 
     std::unique_ptr<User> const &getCurrentUser() const {
         return _currentUser;

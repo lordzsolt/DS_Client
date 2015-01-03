@@ -4,8 +4,8 @@
 MessageSender::MessageSender(std::string serverAddress, unsigned short port) {
     _socket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
     if (_socket == INVALID_SOCKET) {
+        //TODO: Add some exception
         wprintf(L"socket failed with error: %ld\n", WSAGetLastError());
-        WSACleanup();
     }
 
     sockaddr_in address;
@@ -16,7 +16,7 @@ MessageSender::MessageSender(std::string serverAddress, unsigned short port) {
     int iResult = connect(_socket, (SOCKADDR *)&address, sizeof(address));
     if (iResult == SOCKET_ERROR) {
         wprintf(L"Connect to server failed with error: %d\n", WSAGetLastError());
-        return;
+        //TODO: Add some exception
     }
 }
 
@@ -27,7 +27,9 @@ void MessageSender::sendMessage(std::string message) throw() {
     }
 
     int iResult = send(_socket, message.c_str(), static_cast<int>(message.length()), 0);
-    if (iResult == SOCKET_ERROR) {
-        throw "Failed to send message";
+    if (iResult == SOCKET_ERROR)  {
+        //TODO: Add exception
+        wprintf(L"Message sending failed with error: %d\n", WSAGetLastError());
+        //throw "Failed to send message";
     }
 }

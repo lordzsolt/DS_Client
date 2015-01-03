@@ -7,11 +7,11 @@
 class SocketListener {
 
 public:
-    SocketListener() {
-    }
-
     SocketListener(std::string serverAddress, unsigned short port);
+
+    void startListening();
 
 private:
     SOCKET _socket;
+    void readSocket();
 };

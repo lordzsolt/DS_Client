@@ -9,8 +9,6 @@ class MessageSender {
 
 public:
 
-    //TODO: Remove default constructor, somehow...
-    MessageSender() {};
     MessageSender(std::string serverAddress, unsigned short port);
 
     void sendMessage(std::string message) throw();
