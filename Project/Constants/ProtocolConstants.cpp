@@ -5,8 +5,8 @@ unsigned short kServerPort = 12345;
 
 std::string presharedKey = "fJMRP043kyC1PlL7Fp8WkV4OxHbspai";
 
-int getMessageType(MessageType type) {
-    static int types[] = {
+int32_t getMessageType(MessageType type) {
+    static int32_t types[] = {
             1 << 0,
             1 << 1,
             1 << 2,
@@ -14,11 +14,11 @@ int getMessageType(MessageType type) {
             1 << 4,
             1 << 5
     };
-    return types[static_cast<int>(type)];
+    return types[static_cast<int32_t>(type)];
 }
 
-int getMessageTag(MessageTag tag) {
-    static int tags[] = {
+int32_t getMessageTag(MessageTag tag) {
+    static int32_t tags[] = {
             1 << 0,
             1 << 1,
             1 << 2,
@@ -27,6 +27,8 @@ int getMessageTag(MessageTag tag) {
     return tags[static_cast<int>(tag)];
 }
 
+
+std::string kMessageDelimiter = "&";
 std::string kMessageKeyUsername = "username";
 std::string kMessageKeyPassword = "password";
 std::string kMessageKeyRecipientId = "recipientId";

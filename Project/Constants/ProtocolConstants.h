@@ -8,7 +8,7 @@ extern unsigned short kServerPort;
 extern std::string presharedKey;
 
 
-enum class MessageType : int {
+enum class MessageType : int32_t {
     Register,
     Log_In,
     Log_Out,
@@ -18,19 +18,20 @@ enum class MessageType : int {
     Send_File
 };
 
-int getMessageType(MessageType type);
+int32_t getMessageType(MessageType type);
 
 
-enum class MessageTag : int {
+enum class MessageTag : int{
     New,
     Acknowledge,
     Corrupt,
     Missing
 };
 
-int getMessageTag(MessageTag tag);
+int32_t getMessageTag(MessageTag tag);
 
 
+extern std::string kMessageDelimiter;
 extern std::string kMessageKeyUsername;
 extern std::string kMessageKeyPassword;
 extern std::string kMessageKeyRecipientId;
