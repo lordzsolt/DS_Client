@@ -26,14 +26,10 @@ set(SOURCE_FILES main.cpp
     Factories/SocketFactory.h
     Factories/SocketFactory.cpp
 
-    Models/RecipientModels/Recipient.h
-    Models/RecipientModels/User.h
-    Models/RecipientModels/User.cpp
-    Models/RecipientModels/Group.h
-    Models/RecipientModels/Group.cpp
-
     Models/MessageModels/Message.h
     Models/MessageModels/Message.cpp
+    Models/MessageModels/Deserializer/MessageDeserializer.h
+    Models/MessageModels/Deserializer/MessageDeserializer.cpp
     Models/MessageModels/Messages/GroupMessage.h
     Models/MessageModels/Messages/GroupMessage.cpp
     Models/MessageModels/Messages/LoginMessage.h
@@ -42,6 +38,12 @@ set(SOURCE_FILES main.cpp
     Models/MessageModels/Messages/PrivateMessage.cpp
     Models/MessageModels/Messages/RegisterMessage.h
     Models/MessageModels/Messages/RegisterMessage.cpp
+
+    Models/RecipientModels/Recipient.h
+    Models/RecipientModels/User.h
+    Models/RecipientModels/User.cpp
+    Models/RecipientModels/Group.h
+    Models/RecipientModels/Group.cpp
 
     Models/ErrorMessage.h
     Models/ErrorMessage.cpp
