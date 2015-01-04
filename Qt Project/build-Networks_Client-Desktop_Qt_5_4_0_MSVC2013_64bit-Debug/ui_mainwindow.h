@@ -19,8 +19,6 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QStatusBar>
-#include <QtWidgets/QToolBar>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -31,13 +29,11 @@ public:
     QWidget *centralWidget;
     QLabel *label;
     QLabel *label_2;
-    QLineEdit *lineEdit;
-    QLineEdit *lineEdit_2;
-    QPushButton *pushButton;
-    QPushButton *pushButton_2;
+    QLineEdit *lineEdit_username;
+    QLineEdit *lineEdit_password;
+    QPushButton *pushButton_login;
+    QPushButton *pushButton_register;
     QMenuBar *menuBar;
-    QToolBar *mainToolBar;
-    QStatusBar *statusBar;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -52,30 +48,24 @@ public:
         label_2 = new QLabel(centralWidget);
         label_2->setObjectName(QStringLiteral("label_2"));
         label_2->setGeometry(QRect(20, 90, 51, 16));
-        lineEdit = new QLineEdit(centralWidget);
-        lineEdit->setObjectName(QStringLiteral("lineEdit"));
-        lineEdit->setGeometry(QRect(80, 50, 151, 20));
-        lineEdit_2 = new QLineEdit(centralWidget);
-        lineEdit_2->setObjectName(QStringLiteral("lineEdit_2"));
-        lineEdit_2->setGeometry(QRect(80, 90, 151, 20));
-        lineEdit_2->setEchoMode(QLineEdit::Password);
-        pushButton = new QPushButton(centralWidget);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
-        pushButton->setGeometry(QRect(90, 140, 75, 23));
-        pushButton_2 = new QPushButton(centralWidget);
-        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
-        pushButton_2->setGeometry(QRect(90, 170, 75, 23));
+        lineEdit_username = new QLineEdit(centralWidget);
+        lineEdit_username->setObjectName(QStringLiteral("lineEdit_username"));
+        lineEdit_username->setGeometry(QRect(80, 50, 151, 20));
+        lineEdit_password = new QLineEdit(centralWidget);
+        lineEdit_password->setObjectName(QStringLiteral("lineEdit_password"));
+        lineEdit_password->setGeometry(QRect(80, 90, 151, 20));
+        lineEdit_password->setEchoMode(QLineEdit::Password);
+        pushButton_login = new QPushButton(centralWidget);
+        pushButton_login->setObjectName(QStringLiteral("pushButton_login"));
+        pushButton_login->setGeometry(QRect(90, 140, 75, 23));
+        pushButton_register = new QPushButton(centralWidget);
+        pushButton_register->setObjectName(QStringLiteral("pushButton_register"));
+        pushButton_register->setGeometry(QRect(90, 170, 75, 23));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
         menuBar->setGeometry(QRect(0, 0, 255, 21));
         MainWindow->setMenuBar(menuBar);
-        mainToolBar = new QToolBar(MainWindow);
-        mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
-        MainWindow->addToolBar(Qt::TopToolBarArea, mainToolBar);
-        statusBar = new QStatusBar(MainWindow);
-        statusBar->setObjectName(QStringLiteral("statusBar"));
-        MainWindow->setStatusBar(statusBar);
 
         retranslateUi(MainWindow);
 
@@ -87,8 +77,8 @@ public:
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
         label->setText(QApplication::translate("MainWindow", "Username:", 0));
         label_2->setText(QApplication::translate("MainWindow", "Password:", 0));
-        pushButton->setText(QApplication::translate("MainWindow", "Login", 0));
-        pushButton_2->setText(QApplication::translate("MainWindow", "Register", 0));
+        pushButton_login->setText(QApplication::translate("MainWindow", "Login", 0));
+        pushButton_register->setText(QApplication::translate("MainWindow", "Register", 0));
     } // retranslateUi
 
 };
