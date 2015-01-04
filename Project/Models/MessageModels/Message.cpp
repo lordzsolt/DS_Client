@@ -18,9 +18,9 @@ std::string Message::serialize(int32_t length) {
 
     stream.write(reinterpret_cast<char*>(&length), sizeof(length));
     stream.write(reinterpret_cast<char*>(&_index), sizeof(_index));
-    int32_t messageType = getMessageType(_type);
+    int32_t messageType = static_cast<int32_t>(_type);
     stream.write(reinterpret_cast<char*>(&messageType), sizeof(messageType));
-    int32_t messageTag = getMessageTag(_tag);
+    int32_t messageTag = static_cast<int32_t>(_tag);
     stream.write(reinterpret_cast<char*>(&messageTag), sizeof(messageTag));
 
     return stream.str();

@@ -21,5 +21,6 @@ void MessageReceiver::stopReceiving() {
 
 
 void MessageReceiver::messageReceived(string header, string body) {
-    MessageDeserializer::deserializeMessage(header, body);
+    shared_ptr<Message> message = MessageDeserializer::deserializeMessage(header, body);
+    _callback(message);
 }

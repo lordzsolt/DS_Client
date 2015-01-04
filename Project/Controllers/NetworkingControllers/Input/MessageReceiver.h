@@ -3,8 +3,9 @@
 #include "../../../Models/MessageModels/Message.h"
 
 #include <functional>
+#include <memory>
 
-using MessageReceiverCallback = std::function<void(Message& message)>;
+using MessageReceiverCallback = std::function<void(std::shared_ptr<Message> message)>;
 
 class MessageReceiver {
 public:

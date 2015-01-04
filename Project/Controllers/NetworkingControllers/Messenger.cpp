@@ -67,6 +67,6 @@ void Messenger::sendMessage(Message* message, MessengerCallback callback) const 
 }
 
 
-void Messenger::messageReceived(Message& message) {
+void Messenger::messageReceived(shared_ptr<Message> message) {
 
 }
