@@ -10,6 +10,8 @@ public:
 
     std::string serialize(int32_t length);
     virtual std::string serialize() = 0;
+
+    static unsigned int headerLength();
 protected:
     MessageType _type;
     int _index;
