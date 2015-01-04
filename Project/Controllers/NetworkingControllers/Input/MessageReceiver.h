@@ -9,8 +9,13 @@ using MessageReceiverCallback = std::function<void(MessageReceiver receiver, Mes
 
 class MessageReceiver {
 public:
-    MessageReceiver(std::string serverAddress, unsigned short port, MessageReceiverCallback callback);
+    MessageReceiver(SOCKET socket, MessageReceiverCallback callback);
 
+    void startReceiving();
+    void stopReceiving();
 private:
     SocketListener _listener;
+    MessageReceiverCallback _callback;
+
+    void messageReceived(std::string message);
 };
