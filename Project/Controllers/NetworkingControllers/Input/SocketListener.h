@@ -5,7 +5,7 @@
 #include <functional>
 //#include <atomic>
 
-using SocketListenerCallback = std::function<void(std::string message)>;
+using SocketListenerCallback = std::function<void(std::string header, std::string message)>;
 
 
 class SocketListener {

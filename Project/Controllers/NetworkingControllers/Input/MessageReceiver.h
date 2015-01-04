@@ -17,5 +17,5 @@ private:
     SocketListener _listener;
     MessageReceiverCallback _callback;
 
-    void messageReceived(std::string message);
+    void messageReceived(std::string header, std::string message);
 };

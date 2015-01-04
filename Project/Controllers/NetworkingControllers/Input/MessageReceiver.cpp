@@ -18,7 +18,6 @@ void MessageReceiver::stopReceiving() {
 }
 
 
-void MessageReceiver::messageReceived(string message) {
-    //TODO: Deserialize and execute callback
-    printf("\n\nMessage arrived: %s", message.c_str());
+void MessageReceiver::messageReceived(string header, string message) {
+
 }

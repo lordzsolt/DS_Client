@@ -81,16 +81,15 @@ void SocketListener::readNewMessageFromSocket() {
     _header = string(header);
     _currentMessageExpectedLength = (int)header[0] + ((int)header[1] << 8) + ((int)header[2]<<16) + ((int)header[3]<<24);
 
-    printf("Expected message length: %i", _currentMessageExpectedLength);
-
-    char* message = (char*)malloc(_currentMessageExpectedLength * sizeof(char));
+    char* message = (char*)malloc((_currentMessageExpectedLength + 1) * sizeof(char));
     iResult = recv(_socket, message, _currentMessageExpectedLength, 0);
     if (iResult == SOCKET_ERROR) {
         wprintf(L"recv failed with error: %d\n", WSAGetLastError());
     }
     else {
+        message[_currentMessageExpectedLength - 1] = '\0';
         _body = string(message);
-        if (_body.length() == _currentMessageExpectedLength) {
+        if (iResult == _currentMessageExpectedLength) {
             wholeMessageArrived();
         }
         else {
@@ -110,7 +109,7 @@ void SocketListener::appendCurrentMessageFromSocket() {
     }
     else {
         _body.append(buffer);
-        if (_body.length() == _currentMessageExpectedLength) {
+        if (iResult == _currentMessageExpectedLength) {
             wholeMessageArrived();
         }
         else {
@@ -122,7 +121,8 @@ void SocketListener::appendCurrentMessageFromSocket() {
 
 void SocketListener::wholeMessageArrived() {
     _waitForOtherHalfOfMessage = false;
-    _callback(_body);
+    _callback(_header, _body);
     _body.clear();
+    _header.clear();
     _currentMessageExpectedLength = 0;
 }
