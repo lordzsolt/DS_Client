@@ -17,7 +17,7 @@ public:
         return _currentUser;
     }
 
-    Networking const &getNetworking() const {
+    Networking &getNetworking() {
         return _networking;
     }
 };

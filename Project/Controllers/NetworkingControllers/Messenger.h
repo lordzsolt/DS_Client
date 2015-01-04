@@ -8,6 +8,7 @@
 #include <unordered_set>
 #include <functional>
 #include <unordered_map>
+#include <thread>
 
 using MessengerCallback = std::function<void(bool success)>;
 
@@ -15,17 +16,21 @@ class Messenger {
 public:
     Messenger(std::string serverAddress, unsigned short port);
 
-    void sendLogin(std::string username, std::string password, MessengerCallback callback);
-    void sendSignup(std::string username, std::string password, MessengerCallback callback);
-    void sendPrivateMessage(std::string message, int recipientId, MessengerCallback callback);
-    void sendGroupMessage(std::string message, std::unordered_set<int> recipientIds, MessengerCallback callback);
+    virtual ~Messenger();
+
+    void sendLogin(std::string username, std::string password, MessengerCallback callback) const;
+    void sendSignup(std::string username, std::string password, MessengerCallback callback) const;
+    void sendPrivateMessage(std::string message, int recipientId, MessengerCallback callback) const;
+    void sendGroupMessage(std::string message, std::unordered_set<int> recipientIds, MessengerCallback callback) const;
 
 private:
     MessageSender _sender;
     MessageReceiver _receiver;
-    unsigned int _messageIndex = 0;
-    std::unordered_map<unsigned int, MessengerCallback> _callbacks;
+    std::thread _receivingThread;
+    mutable unsigned int _messageIndex = 0;
+    mutable std::unordered_map<unsigned int, MessengerCallback> _callbacks;
 
-    void sendMessage(Message* message, MessengerCallback callback);
+    Messenger(std::string serverAddress, unsigned short port, SOCKET socket);
+    void sendMessage(Message* message, MessengerCallback callback) const;
     void messageReceived(MessageReceiver receiver, Message& message);
 };

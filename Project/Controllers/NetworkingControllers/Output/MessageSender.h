@@ -8,10 +8,9 @@ typedef void (*MessageSenderCallback)(std::string errorMessage);
 class MessageSender {
 
 public:
+    MessageSender(SOCKET socket);
 
-    MessageSender(std::string serverAddress, unsigned short port);
-
-    void sendMessage(std::string message) throw();
+    void sendMessage(std::string message) const throw();
 
 private:
     SOCKET _socket;

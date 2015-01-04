@@ -33,16 +33,16 @@ void Networking::login(std::string username, std::string password, NetworkingCal
 }
 
 
-void Networking::signup(std::string username, std::string password, NetworkingCallback callback) const {
+void Networking::signup(std::string username, std::string password, NetworkingCallback callback) {
 
 }
 
 
-void Networking::privateMessage(std::string message, std::unordered_set<int> recipientIds, NetworkingCallback callback) const {
+void Networking::privateMessage(std::string message, std::unordered_set<int> recipientIds, NetworkingCallback callback) {
 
 }
 
 
-void Networking::groupMessage(std::string message, std::unordered_set<int> recipientIds, NetworkingCallback callback) const {
+void Networking::groupMessage(std::string message, std::unordered_set<int> recipientIds, NetworkingCallback callback) {
 
 }

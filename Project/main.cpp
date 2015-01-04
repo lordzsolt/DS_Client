@@ -16,7 +16,7 @@ int main() {
     Session activeSession;
     string password = "123456";
     string username;
-    Networking networking = activeSession.getNetworking();
+    Networking& networking = activeSession.getNetworking();
     do {
         cout << endl << "Username = ";
         cin >> username;
