@@ -18,7 +18,7 @@ std::string LoginMessage::serialize() {
 
     std::string header = Message::serialize(body.length());
 
-    std::string message = header + "?" + body;
+    std::string message = header + body;
     return message;
 
 }

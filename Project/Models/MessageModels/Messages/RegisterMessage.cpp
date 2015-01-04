@@ -17,6 +17,6 @@ std::string RegisterMessage::serialize() {
     std::string body = bodyStream.str();
 
     std::string header = Message::serialize(body.length());
-    std::string message = header + "?" + body;
+    std::string message = header + body;
     return message;
 }
