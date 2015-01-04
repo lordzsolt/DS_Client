@@ -23,6 +23,9 @@ set(SOURCE_FILES main.cpp
     Controllers/ThreadControllers/SynchronizedQueue.h
     Controllers/ThreadControllers/SynchronizedQueue.cpp
 
+    Factories/SocketFactory.h
+    Factories/SocketFactory.cpp
+
     Models/RecipientModels/Recipient.h
     Models/RecipientModels/User.h
     Models/RecipientModels/User.cpp
