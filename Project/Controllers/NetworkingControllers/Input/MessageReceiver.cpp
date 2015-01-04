@@ -1,10 +1,12 @@
 #include "MessageReceiver.h"
 
+#include "../../../Models/MessageModels/Deserializer/MessageDeserializer.h"
+
 using namespace std;
 using namespace std::placeholders;
 
 MessageReceiver::MessageReceiver(SOCKET socket, MessageReceiverCallback callback)
-        : _listener(socket, bind(&MessageReceiver::messageReceived, this, _1), Message::headerLength()),
+        : _listener(socket, bind(&MessageReceiver::messageReceived, this, _1, _2), Message::headerLength()),
           _callback(callback)
 {
 }
@@ -18,6 +20,6 @@ void MessageReceiver::stopReceiving() {
 }
 
 
-void MessageReceiver::messageReceived(string header, string message) {
-
+void MessageReceiver::messageReceived(string header, string body) {
+    MessageDeserializer::deserializeMessage(header, body);
 }

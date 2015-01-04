@@ -9,6 +9,9 @@ Message::Message(MessageType const &type, int32_t index, MessageTag const &tag):
 
 /**
 * If Message::serialize is changed, Message::headerLength must be updated
+*   ExpectedMessageLength must be updated in SocketListener
+*   MessageDeserializer must be updated
+*
 */
 std::string Message::serialize(int32_t length) {
     std::ostringstream stream(std::stringstream::out | std::stringstream::binary);

@@ -4,8 +4,7 @@
 
 #include <functional>
 
-class MessageReceiver;
-using MessageReceiverCallback = std::function<void(MessageReceiver receiver, Message& message)>;
+using MessageReceiverCallback = std::function<void(Message& message)>;
 
 class MessageReceiver {
 public:
@@ -17,5 +16,5 @@ private:
     SocketListener _listener;
     MessageReceiverCallback _callback;
 
-    void messageReceived(std::string header, std::string message);
+    void messageReceived(std::string header, std::string body);
 };

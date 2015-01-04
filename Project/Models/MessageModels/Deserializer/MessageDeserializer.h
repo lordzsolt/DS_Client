@@ -4,5 +4,5 @@
 
 class MessageDeserializer {
 public:
-    Message& deserializeMessage(std::string header, std::string body);
+    static Message* deserializeMessage(std::string header, std::string body);
 };

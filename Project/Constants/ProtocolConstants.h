@@ -18,7 +18,7 @@ enum class MessageType : int32_t {
     Send_File
 };
 
-int32_t getMessageType(MessageType type);
+constexpr int32_t getMessageType(MessageType type);
 
 
 enum class MessageTag : int{
@@ -28,7 +28,7 @@ enum class MessageTag : int{
     Missing
 };
 
-int32_t getMessageTag(MessageTag tag);
+constexpr int32_t getMessageTag(MessageTag tag);
 
 
 extern std::string kMessageDelimiter;

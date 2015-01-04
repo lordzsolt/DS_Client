@@ -1,5 +1,7 @@
-#include <sstream>
 #include "SocketListener.h"
+
+#include <sstream>
+#include <vector>
 
 using namespace std;
 
@@ -59,7 +61,6 @@ void SocketListener::listen () {
 
 
 void SocketListener::readSocket() {
-    //TODO: Update this to make it more C++ like.
     if (!_waitForOtherHalfOfMessage) {
         //This is a new message
         readNewMessageFromSocket();
@@ -72,23 +73,19 @@ void SocketListener::readSocket() {
 
 
 void SocketListener::readNewMessageFromSocket() {
-    char* header = (char*)malloc(_headerLength * sizeof(char));
-
-    int iResult = recv(_socket, header, _headerLength, 0);
+    _header.resize(_headerLength);
+    int iResult = recv(_socket, &_header[0], _headerLength, 0);
     if (iResult == SOCKET_ERROR) {
         wprintf(L"recv failed with error: %d\n", WSAGetLastError());
     }
-    _header = string(header);
-    _currentMessageExpectedLength = (int)header[0] + ((int)header[1] << 8) + ((int)header[2]<<16) + ((int)header[3]<<24);
+    _currentMessageExpectedLength = *reinterpret_cast<const int32_t*>(_header.data());
 
-    char* message = (char*)malloc((_currentMessageExpectedLength + 1) * sizeof(char));
-    iResult = recv(_socket, message, _currentMessageExpectedLength, 0);
+    _body.resize(_currentMessageExpectedLength);
+    iResult = recv(_socket, &_body[0], _currentMessageExpectedLength, 0);
     if (iResult == SOCKET_ERROR) {
         wprintf(L"recv failed with error: %d\n", WSAGetLastError());
     }
     else {
-        message[_currentMessageExpectedLength - 1] = '\0';
-        _body = string(message);
         if (iResult == _currentMessageExpectedLength) {
             wholeMessageArrived();
         }
@@ -100,16 +97,17 @@ void SocketListener::readNewMessageFromSocket() {
 
 
 void SocketListener::appendCurrentMessageFromSocket() {
-    int leftoverLength = _currentMessageExpectedLength - _body.length();
+    unsigned int leftoverLength = _currentMessageExpectedLength - _body.length();
 
-    char* buffer = (char*)malloc(leftoverLength * sizeof(char));
-    int iResult = recv(_socket, buffer, leftoverLength, 0);
+    string leftover(leftoverLength, '0');
+
+    int iResult = recv(_socket, &leftover[0], leftoverLength, 0);
     if (iResult == SOCKET_ERROR) {
         wprintf(L"recv failed with error: %d\n", WSAGetLastError());
     }
     else {
-        _body.append(buffer);
-        if (iResult == _currentMessageExpectedLength) {
+        _body += leftover;
+        if (_body.length() == _currentMessageExpectedLength) {
             wholeMessageArrived();
         }
         else {

@@ -32,5 +32,5 @@ private:
 
     Messenger(std::string serverAddress, unsigned short port, SOCKET socket);
     void sendMessage(Message* message, MessengerCallback callback) const;
-    void messageReceived(MessageReceiver receiver, Message& message);
+    void messageReceived(Message& message);
 };

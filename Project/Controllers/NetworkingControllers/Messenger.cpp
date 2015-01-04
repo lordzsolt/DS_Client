@@ -17,7 +17,7 @@ Messenger::Messenger(std::string serverAddress, unsigned short port)
 
 Messenger::Messenger(std::string serverAddress, unsigned short port, SOCKET socket)
         : _sender(socket),
-        _receiver(socket, bind(&Messenger::messageReceived, this, _1, _2)),
+        _receiver(socket, bind(&Messenger::messageReceived, this, _1)),
         _receivingThread(bind(&MessageReceiver::startReceiving, &_receiver))
 {
 }
@@ -67,6 +67,6 @@ void Messenger::sendMessage(Message* message, MessengerCallback callback) const 
 }
 
 
-void Messenger::messageReceived(MessageReceiver receiver, Message& message) {
+void Messenger::messageReceived(Message& message) {
 
 }
