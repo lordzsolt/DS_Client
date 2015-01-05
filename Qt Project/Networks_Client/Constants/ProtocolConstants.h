@@ -18,7 +18,7 @@ enum class MessageType : int32_t {
     Send_File
 };
 
-enum class MessageTag : int{
+enum class MessageTag : int32_t {
     New,
     Acknowledge,
     Corrupt,
