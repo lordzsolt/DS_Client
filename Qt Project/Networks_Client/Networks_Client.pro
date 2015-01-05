@@ -13,6 +13,8 @@ TEMPLATE = app
 
 PRECOMPILED_HEADER = _pch.h
 
+LIBS += -lws2_32
+
 SOURCES += main.cpp\
     mainwindow.cpp \
     Constants/ProtocolConstants.cpp \

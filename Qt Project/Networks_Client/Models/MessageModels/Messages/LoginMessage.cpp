@@ -3,10 +3,8 @@
 #include "../../../Constants/ProtocolConstants.h"
 
 #include <sstream>
-#include <boost/tokenizer.hpp>
 
 using namespace std;
-using namespace boost;
 
 LoginMessage::LoginMessage(int index, MessageTag const &tag, std::string &username, std::string &password)
         : Message(MessageType::Log_In, index, tag), _username(username), _password(password)
@@ -17,16 +15,16 @@ LoginMessage::LoginMessage(int index, MessageTag const &tag, std::string &userna
 LoginMessage::LoginMessage(int index, MessageTag const &tag, std::string &body)
         : Message(MessageType::Log_In, index, tag)
 {
-    char_separator<char> separator("&");
-    tokenizer<char_separator<char>> tokens(body, separator);
-    for (const auto& t : tokens) {
-        if (t == kMessageKeyUsername) {
-            _username = t;
-        }
-        else if (t == kMessageKeyPassword) {
-            _password = t;
-        }
-    }
+    //TODO: Implement
+//    tokenizer<char_separator<char>> tokens(body, separator);
+//    for (const auto& t : tokens) {
+//        if (t == kMessageKeyUsername) {
+//            _username = t;
+//        }
+//        else if (t == kMessageKeyPassword) {
+//            _password = t;
+//        }
+//    }
 }
 
 
