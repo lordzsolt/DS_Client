@@ -7,6 +7,8 @@
 #include "../../Models/MessageModels/Messages/RegisterMessage.h"
 #include "../../Models/MessageModels/Messages/PrivateMessage.h"
 
+#include <iostream>
+
 using namespace std;
 using namespace std::placeholders;
 
@@ -53,9 +55,20 @@ void Messenger::sendGroupMessage(std::string message, std::unordered_set<int> re
     //TODO: Update GroupMessage and implement group message sending
 }
 
+void Messenger::registerCallbackForMessageType(MessageType type, MessengerCallback callback) {
+    auto pair = _callbacksByType.find(type);
+    if (pair == _callbacksByType.end()) {
+        //TODO: Fill in the details
+    }
+}
+
+void Messenger::unregisterCallbackForMessageType(MessageType type, MessengerCallback callback) {
+
+}
+
 
 void Messenger::sendMessage(Message* message, MessengerCallback callback) const {
-    _callbacks.emplace(_messageIndex, callback);
+    _callbacksByIndex.emplace(_messageIndex, callback);
     if (_messageIndex < kMaximumMessageIndex - 1) {
         _messageIndex++;
     }
@@ -68,5 +81,20 @@ void Messenger::sendMessage(Message* message, MessengerCallback callback) const 
 
 
 void Messenger::messageReceived(shared_ptr<Message> message) {
+
+    cerr << "Message received: " << message->serialize();
+
+    int32_t index = message->index();
+    auto pair = _callbacksByIndex.find(index);
+    if (pair == _callbacksByIndex.end()) {
+        qDebug() << "Callback not found";
+    }
+    else {
+        MessengerCallback callback = pair->second;
+        callback(true);
+        //_callbacksByIndex.erase(index);
+    }
+
+    shared_ptr<LoginMessage> login = dynamic_pointer_cast<LoginMessage>(message);
 
 }

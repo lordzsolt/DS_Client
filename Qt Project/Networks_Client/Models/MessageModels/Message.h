@@ -11,9 +11,14 @@ public:
     std::string serialize(int32_t length);
     virtual std::string serialize() = 0;
 
+    int32_t index() const {
+        return _index;
+    }
+
     static unsigned int headerLength();
+
 protected:
     MessageType _type;
-    int _index;
+    int32_t _index;
     MessageTag _tag;
 };

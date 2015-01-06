@@ -5,10 +5,13 @@
 
 #include "../../Models/MessageModels/Message.h"
 
+#include "../../Constants/ProtocolConstants.h"
+
 #include <unordered_set>
 #include <functional>
 #include <unordered_map>
 #include <thread>
+#include <memory>
 
 using MessengerCallback = std::function<void(bool success)>;
 
@@ -23,12 +26,17 @@ public:
     void sendPrivateMessage(std::string message, int recipientId, MessengerCallback callback) const;
     void sendGroupMessage(std::string message, std::unordered_set<int> recipientIds, MessengerCallback callback) const;
 
+    void registerCallbackForMessageType(MessageType type, MessengerCallback callback);
+    void unregisterCallbackForMessageType(MessageType type, MessengerCallback callback);
+
 private:
     MessageSender _sender;
     MessageReceiver _receiver;
     std::thread _receivingThread;
     mutable unsigned int _messageIndex = 0;
-    mutable std::unordered_map<unsigned int, MessengerCallback> _callbacks;
+
+    mutable std::unordered_map<unsigned int, MessengerCallback> _callbacksByIndex;
+    mutable std::unordered_map<MessageType, std::vector<MessengerCallback>> _callbacksByType;
 
     Messenger(std::string serverAddress, unsigned short port, SOCKET socket);
     void sendMessage(Message* message, MessengerCallback callback) const;

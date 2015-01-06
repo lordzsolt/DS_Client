@@ -5,7 +5,8 @@
 
 #include "../../Constants/ProtocolConstants.h"
 
-Networking::Networking() : Networking(initializeWSA()) {
+Networking::Networking()
+    : Networking(initializeWSA()) {
 }
 
 
@@ -26,8 +27,10 @@ nullptr_t Networking::initializeWSA() {
 
 
 void Networking::login(std::string username, std::string password, NetworkingCallback callback) {
-    MessengerCallback lamdaCallback = [&callback] (bool success) {
-        callback(success);
+    MessengerCallback lamdaCallback = [callback] (bool success) {
+        if (callback) {
+            callback(success);
+        }
     };
     _messenger.sendLogin(username, password, lamdaCallback);
 }
