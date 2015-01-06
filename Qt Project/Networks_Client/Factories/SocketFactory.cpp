@@ -15,5 +15,6 @@ SOCKET SocketFactory::createSocket(std::string address, unsigned short port) {
     if (iResult == SOCKET_ERROR) {
         //TODO: Add some exception
     }
+    std::cerr << soc;
     return soc;
 }

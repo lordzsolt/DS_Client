@@ -42,5 +42,4 @@ void MainWindow::on_pushButton_login_clicked()
 
 void MainWindow::update_UI(shared_ptr<LoginMessage> message)
 {
-    qDebug() << "I fkin got here!";
 }

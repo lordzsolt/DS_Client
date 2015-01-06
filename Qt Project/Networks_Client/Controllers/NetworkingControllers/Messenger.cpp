@@ -81,9 +81,6 @@ void Messenger::sendMessage(Message* message, MessengerCallback callback) const 
 
 
 void Messenger::messageReceived(shared_ptr<Message> message) {
-
-    cerr << "Message received: " << message->serialize();
-
     int32_t index = message->index();
     auto pair = _callbacksByIndex.find(index);
     if (pair == _callbacksByIndex.end()) {

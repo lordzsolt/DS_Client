@@ -29,9 +29,6 @@ LoginMessage::LoginMessage(int index, MessageTag const &tag, std::string &body)
         string key = innerStrings[0];
         string value = innerStrings[1];
 
-        cerr << "Key: " << key << endl;
-        cerr << "Value: " << value << endl;
-
         if (t == kMessageKeyUsername) {
             _username = t;
         }

@@ -22,5 +22,6 @@ void MessageReceiver::stopReceiving() {
 
 void MessageReceiver::messageReceived(string header, string body) {
     shared_ptr<Message> message = MessageDeserializer::deserializeMessage(header, body);
+    cerr << "Received message with body: " << body << endl;
     _callback(message);
 }

@@ -76,14 +76,14 @@ void SocketListener::readNewMessageFromSocket() {
     _header.resize(_headerLength);
     int iResult = recv(_socket, &_header[0], _headerLength, 0);
     if (iResult == SOCKET_ERROR) {
-        wprintf(L"recv failed with error: %d\n", WSAGetLastError());
+        //wprintf(L"recv failed with error: %d\n", WSAGetLastError());
     }
     _currentMessageExpectedLength = *reinterpret_cast<const int32_t*>(_header.data());
 
     _body.resize(_currentMessageExpectedLength);
     iResult = recv(_socket, &_body[0], _currentMessageExpectedLength, 0);
     if (iResult == SOCKET_ERROR) {
-        wprintf(L"recv failed with error: %d\n", WSAGetLastError());
+        //wprintf(L"recv failed with error: %d\n", WSAGetLastError());
     }
     else {
         if (iResult == _currentMessageExpectedLength) {
@@ -103,7 +103,7 @@ void SocketListener::appendCurrentMessageFromSocket() {
 
     int iResult = recv(_socket, &leftover[0], leftoverLength, 0);
     if (iResult == SOCKET_ERROR) {
-        wprintf(L"recv failed with error: %d\n", WSAGetLastError());
+        //wprintf(L"recv failed with error: %d\n", WSAGetLastError());
     }
     else {
         _body += leftover;
