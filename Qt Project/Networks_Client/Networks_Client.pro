@@ -13,6 +13,11 @@ TEMPLATE = app
 
 PRECOMPILED_HEADER = _pch.h
 
+#Boost
+INCLUDEPATH += C:/Development/boost/MSVC12_64/boost_1_57_0
+LIBS += "-LC:/Development/boost/MSVC12_64/boost_1_57_0/libs"
+
+#Winsocket
 LIBS += -lws2_32
 
 SOURCES += main.cpp\
