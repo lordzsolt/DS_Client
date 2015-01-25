@@ -12,15 +12,16 @@
 using namespace std;
 using namespace std::placeholders;
 
-Messenger::Messenger(std::string serverAddress, unsigned short port)
-        : Messenger(serverAddress, port, SocketFactory::createSocket(serverAddress, port))
+Messenger::Messenger(std::string serverAddress, unsigned short port, MessengerCallback callback)
+        : Messenger(serverAddress, port, callback, SocketFactory::createSocket(serverAddress, port))
 {
+    _callbacksByIndex.emplace(0, callback);
 }
 
-Messenger::Messenger(std::string serverAddress, unsigned short port, SOCKET socket)
-        : _sender(socket),
-        _receiver(socket, bind(&Messenger::messageReceived, this, _1)),
-        _receivingThread(bind(&MessageReceiver::startReceiving, &_receiver))
+Messenger::Messenger(std::string serverAddress, unsigned short port, MessengerCallback callback, SOCKET socket)
+    : _sender(socket),
+      _receiver(socket, bind(&Messenger::messageReceived, this, _1)),
+      _receivingThread(bind(&MessageReceiver::startReceiving, &_receiver))
 {
 }
 
@@ -55,17 +56,6 @@ void Messenger::sendGroupMessage(std::string message, std::unordered_set<int> re
     //TODO: Update GroupMessage and implement group message sending
 }
 
-void Messenger::registerCallbackForMessageType(MessageType type, MessengerCallback callback) {
-    auto pair = _callbacksByType.find(type);
-    if (pair == _callbacksByType.end()) {
-        //TODO: Fill in the details
-    }
-}
-
-void Messenger::unregisterCallbackForMessageType(MessageType type, MessengerCallback callback) {
-
-}
-
 
 void Messenger::sendMessage(Message* message, MessengerCallback callback) const {
     _callbacksByIndex.emplace(_messageIndex, callback);
@@ -81,14 +71,16 @@ void Messenger::sendMessage(Message* message, MessengerCallback callback) const 
 
 
 void Messenger::messageReceived(shared_ptr<Message> message) {
+    cerr << "Got a message";
     int32_t index = message->index();
+    qDebug() << index << endl;
     auto pair = _callbacksByIndex.find(index);
     if (pair == _callbacksByIndex.end()) {
         qDebug() << "Callback not found";
     }
     else {
         MessengerCallback callback = pair->second;
-        callback(true);
+        callback(message);
         //_callbacksByIndex.erase(index);
     }
 

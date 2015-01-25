@@ -1,7 +1,6 @@
-#include "mainwindow.h"
 #include <QApplication>
 
-#include "Controllers/Session.h"
+#include "Controllers/ApplicationController.h"
 
 #ifndef int32_t
 #define int32_t qint32
@@ -13,10 +12,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    Session::activeSession();
-
-    MainWindow w;
-    w.show();
+    ApplicationController::currentApplication().windowController();
 
     return a.exec();
 }

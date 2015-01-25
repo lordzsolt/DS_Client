@@ -5,19 +5,19 @@
 
 #include <memory>
 
-#include "Models/MessageModels/Messages/LoginMessage.h"
+#include "../Models/MessageModels/Messages/LoginMessage.h"
 
 namespace Ui {
 class MainWindow;
 }
 
-class MainWindow : public QMainWindow
+class LoginWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
-    ~MainWindow();
+    explicit LoginWindow(QWidget *parent = 0);
+    ~LoginWindow();
 
 signals:
     void message_Received(std::shared_ptr<LoginMessage> message);

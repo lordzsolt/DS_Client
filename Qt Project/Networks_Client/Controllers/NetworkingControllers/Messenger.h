@@ -13,11 +13,11 @@
 #include <thread>
 #include <memory>
 
-using MessengerCallback = std::function<void(bool success)>;
+using MessengerCallback = std::function<void(std::shared_ptr<Message>)>;
 
 class Messenger {
 public:
-    Messenger(std::string serverAddress, unsigned short port);
+    Messenger(std::string serverAddress, unsigned short port, MessengerCallback callback);
 
     virtual ~Messenger();
 
@@ -26,19 +26,19 @@ public:
     void sendPrivateMessage(std::string message, int recipientId, MessengerCallback callback) const;
     void sendGroupMessage(std::string message, std::unordered_set<int> recipientIds, MessengerCallback callback) const;
 
-    void registerCallbackForMessageType(MessageType type, MessengerCallback callback);
-    void unregisterCallbackForMessageType(MessageType type, MessengerCallback callback);
-
 private:
     MessageSender _sender;
     MessageReceiver _receiver;
     std::thread _receivingThread;
-    mutable unsigned int _messageIndex = 0;
+    mutable unsigned int _messageIndex = 1;
 
+    /**
+     * @brief _callbacksByIndex
+     * Contains the callbacks provided, the callback provided in the constructor will always be at index 0
+     */
     mutable std::unordered_map<unsigned int, MessengerCallback> _callbacksByIndex;
-    mutable std::unordered_map<MessageType, std::vector<MessengerCallback>> _callbacksByType;
 
-    Messenger(std::string serverAddress, unsigned short port, SOCKET socket);
+    Messenger(std::string serverAddress, unsigned short port, MessengerCallback callback, SOCKET socket);
     void sendMessage(Message* message, MessengerCallback callback) const;
     void messageReceived(std::shared_ptr<Message> message);
 };

@@ -23,6 +23,10 @@ public:
         this->name = name;
     }
 
+    inline bool operator==(const Recipient& rhs) {
+        return this->id == rhs.id;
+    }
+
     virtual ~Recipient() {}
 
 protected:

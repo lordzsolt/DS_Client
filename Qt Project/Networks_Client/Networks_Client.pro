@@ -21,7 +21,6 @@ LIBS += "-LC:/Development/boost/MSVC12_64/boost_1_57_0/libs"
 LIBS += -lws2_32
 
 SOURCES += main.cpp\
-    mainwindow.cpp \
     Constants/ProtocolConstants.cpp \
     Controllers/NetworkingControllers/Input/MessageReceiver.cpp \
     Controllers/NetworkingControllers/Input/SocketListener.cpp \
@@ -30,6 +29,8 @@ SOURCES += main.cpp\
     Controllers/NetworkingControllers/Networking.cpp \
     Controllers/ThreadControllers/SynchronizedQueue.cpp \
     Controllers/Session.cpp \
+    Controllers/ApplicationController.cpp \
+    Controllers/WindowController.cpp \
     Factories/SocketFactory.cpp \
     Models/MessageModels/Deserializer/MessageDeserializer.cpp \
     Models/MessageModels/Messages/GroupMessage.cpp \
@@ -39,9 +40,11 @@ SOURCES += main.cpp\
     Models/MessageModels/Message.cpp \
     Models/RecipientModels/Group.cpp \
     Models/RecipientModels/User.cpp \
-    Models/ErrorMessage.cpp
+    Models/ErrorMessage.cpp \
+    Views/LoginWindow.cpp \
+    Controllers/UIControllers/LoginWindowController.cpp
 
-HEADERS  += mainwindow.h \
+HEADERS  += \
     Constants/ProtocolConstants.h \
     Controllers/NetworkingControllers/Input/MessageReceiver.h \
     Controllers/NetworkingControllers/Input/SocketListener.h \
@@ -50,6 +53,8 @@ HEADERS  += mainwindow.h \
     Controllers/NetworkingControllers/Networking.h \
     Controllers/ThreadControllers/SynchronizedQueue.h \
     Controllers/Session.h \
+    Controllers/ApplicationController.h \
+    Controllers/WindowController.h \
     Factories/SocketFactory.h \
     Models/MessageModels/Deserializer/MessageDeserializer.h \
     Models/MessageModels/Messages/GroupMessage.h \
@@ -60,6 +65,8 @@ HEADERS  += mainwindow.h \
     Models/RecipientModels/Group.h \
     Models/RecipientModels/Recipient.h \
     Models/RecipientModels/User.h \
-    Models/ErrorMessage.h
+    Models/ErrorMessage.h \
+    Views/LoginWindow.h \
+    Controllers/UIControllers/LoginWindowController.h
 
 FORMS    += mainwindow.ui

@@ -11,4 +11,5 @@ private:
 public:
     User(int id, const std::string& name) : Recipient(id, name) {
     }
+
 };

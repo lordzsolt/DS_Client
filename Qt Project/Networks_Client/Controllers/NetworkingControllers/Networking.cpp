@@ -5,12 +5,13 @@
 
 #include "../../Constants/ProtocolConstants.h"
 
-Networking::Networking()
-    : Networking(initializeWSA()) {
+Networking::Networking(NotificationCallback callback)
+    : Networking(callback, initializeWSA()) {
 }
 
 
-Networking::Networking(nullptr_t t) : _messenger(kServerAddress, kServerPort) {
+Networking::Networking(NotificationCallback callback, nullptr_t t)
+    : _messenger(kServerAddress, kServerPort, callback) {
 }
 
 
@@ -26,26 +27,26 @@ nullptr_t Networking::initializeWSA() {
 }
 
 
-void Networking::login(std::string username, std::string password, NetworkingCallback callback) {
-    MessengerCallback lamdaCallback = [callback] (bool success) {
+void Networking::login(std::string username, std::string password, NetworkingCallback callback) const {
+    MessengerCallback lamdaCallback = [callback] (std::shared_ptr<Message> message) {
         if (callback) {
-            callback(success);
+            callback(true);
         }
     };
     _messenger.sendLogin(username, password, lamdaCallback);
 }
 
 
-void Networking::signup(std::string username, std::string password, NetworkingCallback callback) {
+void Networking::signup(std::string username, std::string password, NetworkingCallback callback) const {
 
 }
 
 
-void Networking::privateMessage(std::string message, std::unordered_set<int> recipientIds, NetworkingCallback callback) {
+void Networking::privateMessage(std::string message, std::unordered_set<int> recipientIds, NetworkingCallback callback) const {
 
 }
 
 
-void Networking::groupMessage(std::string message, std::unordered_set<int> recipientIds, NetworkingCallback callback) {
+void Networking::groupMessage(std::string message, std::unordered_set<int> recipientIds, NetworkingCallback callback) const {
 
 }

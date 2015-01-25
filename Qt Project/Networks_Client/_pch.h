@@ -2,11 +2,11 @@
 #define CONSTANTS
 
 
-#include <iostream>
 
 #if defined __cplusplus
 #include <QGlobal.h>
 #include <qDebug.h>
+#include <iostream>
 #endif
 
 #ifndef int32_t
