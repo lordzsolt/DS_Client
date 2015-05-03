@@ -16,7 +16,7 @@ using namespace std::placeholders;
 
 
 Messenger::Messenger(string serverAddress, unsigned short port, MessengerCallback messengerCallback, ConnectionCallback connectionCallback)
-    : Messenger(SocketFactory::createServerSocket(serverAddress, port), connectionCallback)
+    : Messenger(SocketFactory::createSocket(serverAddress, port), connectionCallback)
 {
     _callbacksByIndex.emplace(0, messengerCallback);
 }
