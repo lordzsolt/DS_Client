@@ -4,10 +4,14 @@
 MessageSender::MessageSender(SOCKET socket)
 : _socket(socket)
 {
+    std::cout << "Socket is: " << _socket;
 }
 
 
 void MessageSender::sendMessage(std::string message) const throw() {
+
+    std::cerr << "Started sending message";
+
     if (message.length() > kMaximumMessageLength) {
         throw "Message too long.";
     }
@@ -21,5 +25,7 @@ void MessageSender::sendMessage(std::string message) const throw() {
             //throw "Failed to send message";
         }
         amountSent += iResult;
-    } while (amountSent < message.length());
+    }
+    while (amountSent < message.length());
+    std::cout << "Message was sent: " << message;
 }

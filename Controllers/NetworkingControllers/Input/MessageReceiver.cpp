@@ -6,7 +6,8 @@ using namespace std;
 using namespace std::placeholders;
 
 MessageReceiver::MessageReceiver(MessageReceiverCallback callback)
-        : _listener(bind(&MessageReceiver::messageReceived, this, _1, _2, _3), Message::headerLength()),
+        : _listener(bind(&MessageReceiver::messageReceived, this, _1, _2, _3),
+                    Message::headerLength() + sizeof(int32_t)),
           _callback(callback)
 {
 }

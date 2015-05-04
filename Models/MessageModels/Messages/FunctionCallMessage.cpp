@@ -17,6 +17,10 @@ FunctionCallMessage::~FunctionCallMessage()
 
 std::string FunctionCallMessage::serialize()
 {
-    return "";
+    std::string body = _serializedMessage;
+    std::string header = Message::serialize(body.length());
+
+    std::string message = header + body;
+    return message;
 }
 

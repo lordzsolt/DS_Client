@@ -15,8 +15,7 @@ Networking::Networking(NotificationCallback notificationCallback)
 //_messageReceiver(bind(&Messenger::messageReceived, this, _1, _2)),
 
 Networking::Networking(NotificationCallback callback, nullptr_t t)
-    : _messenger(kServerAddress, kServerPort, callback,
-                 bind(&Networking::connectionReceived, this, _1))
+    : _messenger(kServerAddress, kServerPort, callback)
 {
     std::cout << "Networking started with: " << kServerAddress << ":" << kServerPort << "\n";
 }
@@ -67,6 +66,6 @@ void Networking::functionMessage(FunctionType functionType,
         }
     };
 
-    _messenger.sendMessage(&message, 0, lamdaCallback);
+    _messenger.sendMessage(&message, lamdaCallback);
 }
 

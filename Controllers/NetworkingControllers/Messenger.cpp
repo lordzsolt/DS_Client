@@ -15,19 +15,17 @@ using namespace std;
 using namespace std::placeholders;
 
 
-Messenger::Messenger(string serverAddress, unsigned short port, MessengerCallback messengerCallback, ConnectionCallback connectionCallback)
-    : Messenger(SocketFactory::createSocket(serverAddress, port), connectionCallback)
+Messenger::Messenger(string serverAddress, unsigned short port, MessengerCallback messengerCallback)
+    : Messenger(SocketFactory::createSocket(serverAddress, port))
 {
     _callbacksByIndex.emplace(0, messengerCallback);
 }
 
 
-Messenger::Messenger(SOCKET socket, ConnectionCallback connectionCallback)
+Messenger::Messenger(SOCKET socket)
     : _sender(socket),
       _messageReceiver(bind(&Messenger::messageReceived, this, _1, _2)),
-      _messageThread(bind(&MessageReceiver::startReceiving, &_messageReceiver)),
-      _connectionReceiver(socket, connectionCallback),
-      _connectionThread(bind(&ConnectionReceiver::startAcceptingConnections, &_connectionReceiver))
+      _messageThread(bind(&MessageReceiver::startReceiving, &_messageReceiver))
 {
     std::cout << "Messenger started with socket: " << socket << endl;
 }
@@ -51,7 +49,7 @@ void Messenger::removeSocket(SOCKET socket)
 }
 
 
-void Messenger::sendMessage(Message* message, SOCKET socket, MessengerCallback callback) const {
+void Messenger::sendMessage(Message* message, MessengerCallback callback) const {
     _callbacksByIndex.emplace(_messageIndex, callback);
     if (_messageIndex < kMaximumMessageIndex - 1) {
         _messageIndex++;
@@ -59,7 +57,6 @@ void Messenger::sendMessage(Message* message, SOCKET socket, MessengerCallback c
     else {
         _messageIndex = 0;
     }
-    MessageSender sender(socket);
 
     std::string serializedMessage = message->serialize();
     std::ostringstream stream(std::stringstream::out | std::stringstream::binary);
@@ -67,7 +64,7 @@ void Messenger::sendMessage(Message* message, SOCKET socket, MessengerCallback c
     std::string serializedIndex = stream.str();
 
     std::string messageWithIndex = serializedIndex + serializedMessage;
-    sender.sendMessage(messageWithIndex);
+    _sender.sendMessage(messageWithIndex);
 }
 
 
