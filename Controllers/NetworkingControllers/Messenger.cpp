@@ -50,13 +50,13 @@ void Messenger::removeSocket(SOCKET socket)
 
 
 void Messenger::sendMessage(Message* message, MessengerCallback callback) const {
-    _callbacksByIndex.emplace(_messageIndex, callback);
     if (_messageIndex < kMaximumMessageIndex - 1) {
         _messageIndex++;
     }
     else {
         _messageIndex = 0;
     }
+    _callbacksByIndex.emplace(_messageIndex, callback);
 
     std::string serializedMessage = message->serialize();
     std::ostringstream stream(std::stringstream::out | std::stringstream::binary);

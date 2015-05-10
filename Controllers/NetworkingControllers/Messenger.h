@@ -39,7 +39,7 @@ private:
     MessageSender _sender;
     MessageReceiver _messageReceiver;
     std::thread _messageThread;
-    mutable unsigned int _messageIndex = 1;
+    mutable unsigned int _messageIndex = 0;
 
     /**
      * @brief _callbacksByIndex
